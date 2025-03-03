@@ -10,6 +10,16 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
+      content_type: a.string(),
+      executionDuration: a.float(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+
+  Task: a
+    .model({
+      content: a.string(),
+      content_type: a.string(),
+      executionDuration: a.float(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

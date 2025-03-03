@@ -28,7 +28,13 @@ export default function App() {
   function createTodo() {
     client.models.Todo.create({
       content: window.prompt("Todo content"),
+      content_type: window.prompt("Todo content Type"),
     });
+  }
+
+    
+  function deleteTodo(id: string) {
+    client.models.Todo.delete({ id })
   }
 
   return (
@@ -36,8 +42,12 @@ export default function App() {
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+        {todos.map((todo) => (<li           
+          onClick={() => deleteTodo(todo.id)}
+          key={todo.id}>
+          {todo.content}
+          {todo.content_type}
+        </li>
         ))}
       </ul>
       <div>
